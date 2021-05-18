@@ -7,19 +7,16 @@
 #
 
 #SSLPATH=/usr/local/ssl
-OSSLPATH=/usr/local/opt/openssl
+OSSLPATH=/opt/local
 OSSLINC=$(OSSLPATH)/include
 
-CC=gcc
-
 # 64 bit if default for compiler setup
-CFLAGS= -DUSEOPENSSL -g -I. -I$(OSSLINC) -Wl
+CFLAGS= -DUSEOPENSSL -g -I. -I$(OSSLINC)
 OSSLLIB=$(OSSLPATH)/lib
-
 
 # This is to link with whatever we have, SSL crypto lib we put in static
 #LIBS=-L$(OSSLLIB) $(OSSLLIB)/libcrypto.a
-LIBS=-L$(OSSLLIB) $(OSSLLIB)/libcrypto.a
+LIBS=-L$(OSSLLIB) $(OSSLLIB)/libcrypto.a -lz
 all: chntpw cpnt reged
 
 chntpw: chntpw.o ntreg.o edlib.o
@@ -42,4 +39,3 @@ reged: reged.o ntreg.o edlib.o
 
 clean:
 	rm -f *.o chntpw chntpw.static cpnt reged reged.static *~
-
