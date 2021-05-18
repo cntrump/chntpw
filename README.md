@@ -239,3 +239,30 @@ vk-offs    size    type           name
 0x003228   508  REG_BINARY       <V>
 
 For more techincal info, look it up in the source code.
+
+How to build:
+-----------------
+
+macports
+
+```
+sudo port install openssl
+```
+
+```
+CC=clang \
+OSSLPATH=/opt/local \
+make
+```
+
+brew
+
+```
+brew install openssl
+```
+
+```
+CC=clang \
+OSSLPATH=/usr/local/opt/openssl@1.1 \
+make
+```
