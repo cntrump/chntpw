@@ -250,6 +250,8 @@ sudo port install openssl
 ```
 
 ```
+export MACOSX_DEPLOYMENT_TARGET=10.9
+
 CC=clang \
 OSSLPATH=/opt/local \
 make
@@ -262,6 +264,8 @@ brew install openssl
 ```
 
 ```
+export MACOSX_DEPLOYMENT_TARGET=10.9
+
 CC=clang \
 OSSLPATH=/usr/local/opt/openssl@1.1 \
 make

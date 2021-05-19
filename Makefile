@@ -13,7 +13,7 @@ OSSLPATH=/opt/local
 OSSLINC=$(OSSLPATH)/include
 
 # 64 bit if default for compiler setup
-CFLAGS= -DUSEOPENSSL -g -I. -I$(OSSLINC)
+CFLAGS+= -DUSEOPENSSL -g -I. -I$(OSSLINC)
 OSSLLIB=$(OSSLPATH)/lib
 
 # This is to link with whatever we have, SSL crypto lib we put in static
