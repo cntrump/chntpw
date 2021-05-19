@@ -6,6 +6,8 @@
 # See INSTALL for more info.
 #
 
+PREFIX=/opt/local
+
 #SSLPATH=/usr/local/ssl
 OSSLPATH=/opt/local
 OSSLINC=$(OSSLPATH)/include
@@ -17,7 +19,6 @@ OSSLLIB=$(OSSLPATH)/lib
 # This is to link with whatever we have, SSL crypto lib we put in static
 #LIBS=-L$(OSSLLIB) $(OSSLLIB)/libcrypto.a
 LIBS=-L$(OSSLLIB) $(OSSLLIB)/libcrypto.a -lz
-all: chntpw cpnt reged
 
 chntpw: chntpw.o ntreg.o edlib.o
 	$(CC) $(CFLAGS) -o chntpw chntpw.o ntreg.o edlib.o $(LIBS)
@@ -28,7 +29,6 @@ cpnt: cpnt.o
 reged: reged.o ntreg.o edlib.o
 	$(CC) $(CFLAGS) -o reged reged.o ntreg.o edlib.o
 
-
 #ts: ts.o ntreg.o
 #	$(CC) $(CFLAGS) -nostdlib -o ts ts.o ntreg.o $(LIBS)
 
@@ -37,5 +37,14 @@ reged: reged.o ntreg.o edlib.o
 .c.o:
 	$(CC) -c $(CFLAGS) $<
 
+.PHONY: all clean install
+
+all: chntpw cpnt reged
+
 clean:
 	rm -f *.o chntpw chntpw.static cpnt reged reged.static *~
+
+install: all
+	install chntpw $(PREFIX)/bin/
+	install cpnt $(PREFIX)/bin/
+	install reged $(PREFIX)/bin/
